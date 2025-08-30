@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canlı Sayaç</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        body {
+            background: transparent;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #label {
+            font-size: 3em;
+            font-weight: bold;
+            color: white;
+            margin-right: 15px;
+            text-shadow: 2px 2px 8px black;
+        }
+        #counter {
+            font-size: 5em;
+            font-weight: bold;
+            color: red;
+            text-shadow: 2px 2px 8px black;
+        }
+        .wrapper {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div id="label">Ölüm Sayacı:</div>
+        <div id="counter">0</div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            function updateCounter() {
+                $.get('https://berkayseyhan.com.tr/sercan/get_counter.php', function(data){
+                    $("#counter").text(data.count);
+                }, "json");
+            }
+
+            setInterval(updateCounter, 2000);
+            updateCounter();
+        });
+    </script>
+</body>
+</html>
